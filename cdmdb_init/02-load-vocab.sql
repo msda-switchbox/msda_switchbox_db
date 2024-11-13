@@ -1,0 +1,12 @@
+BEGIN;
+COPY omopcdm.DOMAIN FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/DOMAIN.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COPY omopcdm.CONCEPT_CLASS FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/CONCEPT_CLASS.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COPY omopcdm.RELATIONSHIP FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/RELATIONSHIP.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COPY omopcdm.DRUG_STRENGTH FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/DRUG_STRENGTH.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COPY omopcdm.VOCABULARY FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/VOCABULARY.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COPY omopcdm.CONCEPT_SYNONYM FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/CONCEPT_SYNONYM.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COPY omopcdm.CONCEPT_ANCESTOR FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/CONCEPT_ANCESTOR.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COPY omopcdm.CONCEPT_RELATIONSHIP FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/CONCEPT_RELATIONSHIP.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COPY omopcdm.CONCEPT FROM PROGRAM 'zstd --decompress --stdout /docker-entrypoint-initdb.d/vocab/CONCEPT.csv.zst' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b';
+COMMIT;
+VACUUM ANALYZE;
